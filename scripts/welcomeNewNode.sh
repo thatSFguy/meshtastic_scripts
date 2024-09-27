@@ -23,6 +23,6 @@ echo "$CURRENT_NODES" | awk -F '│' 'NR>5 && NF>=15 {gsub(/^[ \t]+|[ \t]+$/, ""
         echo "$NODE_ID" >> "$KNOWN_NODES_FILE"
         
         # Send a welcome message
-        "$MPATH" --host localhost --dest "$NODE_ID" --sendtext "Welcome to the Mesh from Sparta, MI" --ack
+        "$MPATH" --host localhost --dest "$NODE_ID" --sendtext "Welcome to the Mesh from XXXXXX" --ack
     fi
 done
