@@ -7,7 +7,8 @@ Starting the repo with a weather script.  It runs on a cron job, gets the most r
 
 
 
-E.g.
+Cron Example:
+----------------------------------------------
 58 7,19 * * * /bin/bash /home/XXX/meshweather.sh >> /home/XXX/logs/meshweather-cron.log 2>&1
 0 0 * * 0 > /home/XXX/logs/meshweather-cron.log
 
