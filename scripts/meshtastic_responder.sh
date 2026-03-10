@@ -48,6 +48,15 @@ fi
 # --- PROCESS PERSISTENCE ---
 SEARCH_PATTERN="python3 -u -m meshtastic --ch-index 1 --reply"
 
+# Kill any broken/stuck instances first
+if pgrep -f "$SEARCH_PATTERN" > /dev/null; then
+    if tail -n 20 "$LOGFILE" 2>/dev/null | grep -q "BrokenPipeError"; then
+        log "Detected BrokenPipeError — killing stuck responder..."
+        pkill -f "$SEARCH_PATTERN"
+        sleep 2
+    fi
+fi
+
 if ! pgrep -f "$SEARCH_PATTERN" > /dev/null; then
     log "Meshtastic responder not running. Starting now..."
     nohup python3 -u -m meshtastic --ch-index 1 --reply >> "$LOGFILE" 2>&1 &
